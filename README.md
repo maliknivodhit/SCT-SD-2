@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+🔢 Number Guessing Game
+This is a simple console-based number guessing game where the computer picks a random number, and you try to guess it!
 
-## Project info
+🚀 Features
+Random Number Generation: The computer selects a random secret number within a predefined range.
 
-**URL**: https://lovable.dev/projects/68e9048d-8e8b-4f07-b703-969f2516ce92
+User Input: Players can input their guesses.
 
-## How can I edit this code?
+Hints: The game provides feedback (e.g., "Too high!", "Too low!") to guide the player.
 
-There are several ways of editing your application.
+Limited Attempts: Players typically have a limited number of attempts to guess the number.
 
-**Use Lovable**
+Win/Loss Condition: Clearly indicates when the player has won or lost.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/68e9048d-8e8b-4f07-b703-969f2516ce92) and start prompting.
+💡 How It Works
+The game logic is straightforward:
 
-Changes made via Lovable will be committed automatically to this repo.
+The program generates a random integer within a specified range (e.g., 1 to 100).
 
-**Use your preferred IDE**
+The player is prompted to enter their guess.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The player's guess is compared to the secret number:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+If the guess matches the secret number, the player wins.
 
-Follow these steps:
+If the guess is too high, a "Too high!" hint is given.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+If the guess is too low, a "Too low!" hint is given.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+The player continues guessing until they either guess the correct number or run out of attempts.
 
-# Step 3: Install the necessary dependencies.
-npm i
+🛠️ How to Play
+To play the game, you'll need a Python environment installed on your system.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Save the Code:
+Save the game's Python code (e.g., game.py) to a file on your computer.
 
-**Edit a file directly in GitHub**
+import random
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+def play_guessing_game():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 100.")
 
-**Use GitHub Codespaces**
+    secret_number = random.randint(1, 100)
+    attempts_limit = 7
+    attempts_taken = 0
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+    while attempts_taken < attempts_limit:
+        try:
+            guess = int(input(f"Attempt {attempts_taken + 1}/{attempts_limit}: Enter your guess: "))
+        except ValueError:
+            print("Invalid input. Please enter a whole number.")
+            continue
 
-## What technologies are used for this project?
+        attempts_taken += 1
 
-This project is built with:
+        if guess < secret_number:
+            print("Too low! Try again.")
+        elif guess > secret_number:
+            print("Too high! Try again.")
+        else:
+            print(f"Congratulations! You guessed the number {secret_number} in {attempts_taken} attempts!")
+            return
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+    print(f"\nGame Over! You ran out of attempts. The secret number was {secret_number}.")
 
-## How can I deploy this project?
+if __name__ == "__main__":
+    play_guessing_game()
 
-Simply open [Lovable](https://lovable.dev/projects/68e9048d-8e8b-4f07-b703-969f2516ce92) and click on Share -> Publish.
+Run the Game:
+Open your terminal or command prompt, navigate to the directory where you saved game.py, and run the script using Python:
 
-## Can I connect a custom domain to my Lovable project?
+python game.py
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Follow the Prompts:
+The game will guide you through the process, asking for your guesses and providing hints.
